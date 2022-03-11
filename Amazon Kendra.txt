@@ -1,0 +1,187 @@
+Amazon Kendra 
+=============
+******************Connector Overview*******************
+
+
+==>Amazon Kendra is an Intelligent search/Enterprice Search.
+
+
+Kendra console=====>Connector====>DataSource
+
+
+
+                      SDK(Connect through end-Point URL)  /cond                SpringBoot
+Kendra console==============================================>Connector=================>DataSource
+
+
+==>SDK is a Rest end-point, SDK is going to connect the Connector and going to share the all information.
+
+Kendra console
+Connector     ===========>SDK is a Rest end-point
+DataSource
+
+==>Amazon Kendra Index having DataSource.
+
+==>Connector intermediate between Kendra and DataSource. here Connector connecting to DataSource and searching information sending to Kendra.
+
+==> Code should be deployed into EC to BOX
+
+==>Full CRAWL and Change_log
+
+==>SDK is a Rest end-point, SDK is going to connect the Connector and going to share the all information.
+
+fieldMapping 
+============
+crawlType : "Full_CRAWL"
+
+fieldMapping is nothing but filter.
+
+
+fieldMapping is nothing but filter the File/filter the PDF File like that.
+
+==>Kendra going to call our Connector,In the connector endpoint would be configured in SDK and by using end-point(/configure) SDK call to SpringBoot App then 
+   based on requirement interact with DataSource.
+
+
+DataSource Synching two faces
+==============================
+
+1 startSync:: Scrolling meaning connect to DataSource featch the all information putting into the queue.
+2 injection:: SDK 1 item at a time from the queue send to the Kendra for injection.
+
+
+Why using index field?
+=======================
+
+Basically i could have to run on local,i cann't expect request comming from Kendra Console,
+
+connector expect request from Kendra Console so that reason we used index field.
+
+FieldMapping talk about CRWAL:==>Full CRAWL and Change_log
+=============================
+type.txt file want to inclussion and don't want to exclusion.
+
+
+Once start (WorkedUp/FileSystem Connector)the SpringBoot Application,It is running or not then we should go for getConnector();
+
+1 index haing multipule DataSource ID.
+
+RepositoryId is nothing but DataSource ID 
+
+fieldMappings is nothing but filter the data
+
+Full CRAWL and Change_log
+==========================
+
+FULL_CRAWL featch the all document at a time and inject Kendra.
+
+
+Once complete the FULL CRAWL then based on timestamp, it will run the Change Log ,this is the incremental mode. (Using timestamp)
+
+“InclusionPattern“ :[.txt] inject only text file
+“exclusionPattern” :[.pdf] except pdf file, inject remaining all format
+
+
+
+2 Discussion on How to run connector
+====================================
+
+  ==>Once we must build then we can run the Connector.
+
+  ==>Kendra console (SDK) call to API configure (end point) 
+
+  INDEX:
+  =====
+  ==>1 index haing multipule DataSource ID
+
+  DataSource ID
+  =============
+
+  ==>RepositoryId is nothing but DataSource ID 
+
+  ==>copy the DS id and Role then we can use post man
+
+
+  index field
+  ===========
+
+  Basically, i could have to run on local, I can’t expect request coming from Kendra Console,
+  connecter expect request from Kendra Console.
+
+  Field Mapping
+  =============
+
+  ==>Field Mapping talk about CRWAL:
+
+  ==>File want to inclusion and don't want to exclusion.
+
+
+  fieldMappings is nothing but filter the data 
+
+  Full CRAWL and Change_log
+  -------------------------
+  FULL_CRAWL featch the all document at a time and inject Kendra.
+
+
+   Once complete the FULL CRAWL then based on timestamp, it will run the Change Log ,this is the incremental mode. (Using timestamp)
+
+   “InclusionPattern“ :[.txt] inject only text file
+   “exclusionPattern” :[.pdf] except pdf file, inject remaining all format
+
+=========================================================================================
+
+3 Kendra Connector code quick walk through
+==========================================
+
+
+
+====================================================================================
+
+if issue came particuler Connector,I don't know the Index,DataSource,Role and auth token etc
+
+DataSource?
+
+
+
+
+=====================
+
+File System Connector we can used for Code commit Repository
+
+ 
+[7:23 PM] Kamlesh Ghoradkar
+https://git-codecommit.us-west-2.amazonaws.com/v1/repos/GithubConnector-prod
+
+[7:23 PM] Kamlesh Ghoradkar
+codecommit::us-west-2://GithubConnector-prod
+
+[7:24 PM] Kamlesh Ghoradkar
+https://git-codecommit.us-west-2.amazonaws.com/v1/repos/SlackConnector-prod
+
+[7:24 PM] Kamlesh Ghoradkar
+codecommit::us-west-2://SlackConnector-prod
+
+[7:27 PM] Kamlesh Ghoradkar
+https://persistentaws.awsapps.com/start#/====>Access
+
+[7:31 PM] Kamlesh Ghoradkar
+https://931584077804.signin.aws.amazon.com/console
+
+
+
+
+
+
+  
+
+
+*********************************************************************
+
+Java 11 and
+IDE ==>STS
+DB  ==>Oracle
+Postman
+Notepad++
+
+p_reddy
+NewKumar@Pers1st
